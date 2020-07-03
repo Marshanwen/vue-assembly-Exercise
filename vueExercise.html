@@ -6,8 +6,56 @@
   <title>Document</title>
 </head>
 <body>
-  <script></script>
-  <script></script>
-  <script></script>
+  <div id="app">
+    {{message}}
+    <ul>
+      <li>haha</li>
+      <todo-item v-for="item in list" :title="item.title" :del="item.del"></todo-item>
+    </ul>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  <script>
+  Vue.component('todo-item', {
+    props: {
+      title: String,
+      del: {
+        tyoe: Boolean,
+        default:false
+      },
+    },
+    template:
+      <li>
+        <span v-if="!del">{{title}}</span>
+        <span v-else style="text-decoration: line-through;">{{title}}</span>
+        <button v-show="!del">删除</button>
+      </li>
+    ,
+    data: function(){
+      return{}
+    },
+    methods: {
+
+    },
+  })
+
+
+  
+  var vm = new Vue({
+    el:'#app',
+    data:{
+      message:"Hello world",
+      list:[{
+        title:"第一次课程",
+        del: false
+      },{
+        title:"第二次课程",
+        del: false
+      }]
+    }
+  })
+
+  
+  </script>
 </body>
 </html>
