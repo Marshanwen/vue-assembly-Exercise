@@ -33,6 +33,7 @@
     methods: {
       change(){
         console.log('删除')
+        this.del = !this.del
         this.$emit('delete',this.title)
         
       }
