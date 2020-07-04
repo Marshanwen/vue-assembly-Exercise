@@ -3,36 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>vue组件练习</title>
 </head>
 <body>
   <div id="app">
     {{message}}
-    <ul>
-      <li>haha</li>
-      <todo-item v-for="item in list" :title="item.title" :del="item.del"></todo-item>
-    </ul>
+    <todo-list></todo-list>
   </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script>
   Vue.component('todo-item', {
+    template: `
+    <li>
+      <span v-if="!del">{{title}}</span>
+      <span v-else style="text-deoration:line-through">{{title}}</span>
+      <button>删除</button>
+    </li>
+    `,
     props: {
       title: String,
       del: {
-        tyoe: Boolean,
+        type: Boolean,
         default:false
       },
     },
-    template:
-      <li>
-        <span v-if="!del">{{title}}</span>
-        <span v-else style="text-decoration: line-through;">{{title}}</span>
-        <button v-show="!del">删除</button>
-      </li>
-    ,
     data: function(){
       return{}
+    },
+    methods: {
+
+    },
+  })
+  Vue.component('todo-list', {
+    props: {
+      title: String,
+      del: {
+        type: Boolean,
+        default:false,
+      },
+    },
+    template: `
+      <ul>
+        <todo-item v-for="item in list" :title="item.title" :del="item.del"></todo-item>
+      </ul>
+    `,
+    data: function(){
+      return{
+        list:[{
+          title:"第一次课程",
+          del: false
+        },{
+          title:"第二次课程",
+          del: false
+        },{
+          title:"第三次课程",
+          del: false
+        }]
+      }
     },
     methods: {
 
@@ -45,13 +72,7 @@
     el:'#app',
     data:{
       message:"Hello world",
-      list:[{
-        title:"第一次课程",
-        del: false
-      },{
-        title:"第二次课程",
-        del: false
-      }]
+      
     }
   })
 
