@@ -16,25 +16,10 @@
     template: `
     <li>
       <span v-if="!del">{{title}}</span>
-      <span v-else style="text-deoration:line-through">{{title}}</span>
-      <button>删除</button>
+      <span v-else style="text-decoration: line-through;">{{title}}</span>
+      <button @click="change">删除</button>
     </li>
     `,
-    props: {
-      title: String,
-      del: {
-        type: Boolean,
-        default:false
-      },
-    },
-    data: function(){
-      return{}
-    },
-    methods: {
-
-    },
-  })
-  Vue.component('todo-list', {
     props: {
       title: String,
       del: {
@@ -42,9 +27,21 @@
         default:false,
       },
     },
+    data: function(){
+      return{}
+    },
+    methods: {
+      change(){
+        console.log('删除')
+        this.$emit('delete',this.title)
+        
+      }
+    },
+  })
+  Vue.component('todo-list', {
     template: `
       <ul>
-        <todo-item v-for="item in list" :title="item.title" :del="item.del"></todo-item>
+        <todo-item @delete="handleVal" v-for="item in list" :title="item.title" :del="item.del"></todo-item>
       </ul>
     `,
     data: function(){
@@ -54,15 +51,14 @@
           del: false
         },{
           title:"第二次课程",
-          del: false
-        },{
-          title:"第三次课程",
-          del: false
+          del: true
         }]
       }
     },
     methods: {
-
+      handleVal(val){
+        console.log('todo-list',val)
+      }
     },
   })
 
