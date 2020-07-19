@@ -4,7 +4,7 @@
  * @Author: 任瀚汶
  * @Date: 2020-07-19 10:26:58 
  * @Last Modified by: 任瀚汶
- * @Last Modified time: 2020-07-19 10:27:18
+ * @Last Modified time: 2020-07-19 10:40:17
 */
 <template>
   <div class="hello">
@@ -38,15 +38,15 @@ export default {
         console.log(icnow)
     }, 1000)
   },
-  computed: {
-            // 当前时间
-	 newTime: function () {
-              return this.year + '年' + this.month + '月' + this.date + '日 星期' + this.day + ' ' + this.time;
-      }
-  },
-  beforeDestroy () {
-    clearInterval(interval);
-  }
+  // computed: {
+  //           // 当前时间
+	//  newTime: function () {
+  //             return this.year + '年' + this.month + '月' + this.date + '日 星期' + this.day + ' ' + this.time;
+  //     }
+  // },
+  // beforeDestroy () {
+  //   clearInterval(interval);
+  // }
 }
 </script>
 
