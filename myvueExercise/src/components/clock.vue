@@ -4,7 +4,7 @@
  * @Author: 任瀚汶
  * @Date: 2020-07-19 10:26:58 
  * @Last Modified by: 任瀚汶
- * @Last Modified time: 2020-07-19 10:40:17
+ * @Last Modified time: 2020-07-20 08:58:05
 */
 <template>
   <div class="hello">
@@ -27,26 +27,39 @@ export default {
     }
   },
   created () {
-    interval = setInterval(() =>{
+    //用setInterval方法实现
+
+    // interval = setInterval(() =>{
+    //   let icnow = new Date();
+    //   this.year = icnow.getFullYear();
+    //   this.month = icnow.getMonth() + 1;
+    //   this.date = icnow.getDate();
+    //   // this.day = days[icnow.getDay()];
+    //   this.day = icnow.getDay();
+    //   this.time = icnow.toTimeString().substring(0, 8);
+    //   console.log(icnow)
+    // }, 1000)
+    
+    function setTime(second,fn){
+      let timeOut = (second,fn)=>{
+          setTimeout(()=>{
+            fn();
+            timeOut(second,fn);
+          },second)
+      }
+      timeOut(second,fn);
+    }
+
+    setTime(1000,()=>{
       let icnow = new Date();
-        this.year = icnow.getFullYear();
-        this.month = icnow.getMonth() + 1;
-        this.date = icnow.getDate();
-        // this.day = days[icnow.getDay()];
-        this.day = icnow.getDay();
-        this.time = icnow.toTimeString().substring(0, 8);
-        console.log(icnow)
-    }, 1000)
-  },
-  // computed: {
-  //           // 当前时间
-	//  newTime: function () {
-  //             return this.year + '年' + this.month + '月' + this.date + '日 星期' + this.day + ' ' + this.time;
-  //     }
-  // },
-  // beforeDestroy () {
-  //   clearInterval(interval);
-  // }
+      this.year = icnow.getFullYear();
+      this.month = icnow.getMonth() + 1;
+      this.date = icnow.getDate();
+      this.day = icnow.getDay();
+      this.time = icnow.toTimeString().substring(0, 8);
+      console.log(icnow)
+    })
+  }
 }
 </script>
 
